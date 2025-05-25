@@ -1,41 +1,230 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Roni Ritz Ganem</title>
-  <style>
-    body {
-      background-color: #111;
-      color: #eee;
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-    .content {
-      text-align: center;
-    }
-    a {
-      color: #0af;
-      text-decoration: none;
-      margin: 0 10px;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ritz-Ganem Roni | MSc Student</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;500;700&display=swap');
+
+        body {
+            background-color: #F8F8F8; /* Fond légèrement cassé comme sur l'image */
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Aligner en haut */
+            min-height: 100vh;
+            padding: 20px; /* Un peu de padding global */
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px; /* Limite de largeur pour un bon affichage */
+            background-color: #FFFFFF; /* Fond blanc principal pour le contenu */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #E0E0E0; /* Bordure générale pour l'ensemble */
+        }
+
+        .header {
+            background-color: #333; /* Barre noire en haut */
+            color: #E0E0E0; /* Texte gris clair */
+            padding: 15px 30px;
+            font-size: 1.1em;
+            text-align: center;
+            border-bottom: 2px solid #5A4E8F; /* Ligne violette sous le titre */
+        }
+
+        .main-content {
+            display: flex;
+            flex-wrap: wrap; /* Permet aux éléments de s'enrouler sur les petits écrans */
+            padding: 30px;
+            gap: 40px; /* Espacement entre les deux colonnes principales */
+            justify-content: center;
+        }
+
+        .left-panel {
+            flex: 2; /* Prend plus de place */
+            min-width: 300px; /* Largeur minimale pour le panneau gauche */
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .image-container {
+            width: 100%;
+            max-width: 500px; /* Limite la largeur de l'image pour qu'elle ne soit pas trop grande */
+            height: auto; /* Permet à l'image de conserver son ratio */
+            border-radius: 20px; /* Rayon de bordure pour l'effet "découpé" */
+            overflow: hidden; /* Important pour masquer ce qui dépasse de la forme */
+            margin: 0 auto; /* Centrer l'image */
+            position: relative; /* Pour positionner l'image */
+            z-index: 1; /* S'assurer qu'elle est au-dessus du fond */
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 20px; /* Appliquer le même rayon à l'image */
+            /* Pour un effet plus "découpé" comme sur Canva, des propriétés CSS complexes (clip-path) seraient nécessaires.
+               Pour l'instant, un simple border-radius crée une forme adoucie.
+               Si vous voulez l'effet exact, cela nécessitera des SVGs ou clip-path avancés. */
+        }
+
+        .about-section {
+            font-size: 1.2em;
+            color: #333;
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .about-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2em;
+            color: #5A4E8F; /* Couleur violette */
+            margin-bottom: 10px;
+        }
+
+        .about-section p {
+            font-size: 0.9em;
+            line-height: 1.6;
+            color: #666;
+        }
+
+        .right-panel {
+            flex: 1; /* Prend moins de place, mais s'étend */
+            min-width: 250px; /* Largeur minimale pour le panneau droit */
+            background-color: #E6E0F0; /* Couleur de fond des cadres de droite */
+            border-radius: 25px; /* Bordure arrondie des cadres */
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px; /* Espacement entre les éléments de la liste */
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* Espacement entre le texte et l'image */
+            gap: 15px; /* Espacement entre le texte et l'image */
+        }
+
+        .menu-item a {
+            font-size: 1.3em;
+            color: #333;
+            text-decoration: none;
+            flex-grow: 1; /* Permet au texte de prendre l'espace disponible */
+            padding: 10px 0; /* Plus de surface cliquable */
+            transition: color 0.3s ease;
+        }
+
+        .menu-item a:hover {
+            color: #5A4E8F; /* Changement de couleur au survol */
+            text-decoration: underline;
+        }
+
+        .menu-item .placeholder-image {
+            width: 60px;
+            height: 60px;
+            background-color: #C0B7D1; /* Couleur de fond pour les cercles */
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0; /* Ne pas laisser l'image rétrécir */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #A095B5; /* Petite bordure autour des cercles */
+        }
+
+        .menu-item .placeholder-image img {
+            width: 100%; /* L'image remplira le cercle */
+            height: 100%;
+            object-fit: cover; /* Recadre l'image pour remplir le cercle */
+            border-radius: 50%; /* Pour s'assurer que l'image est aussi un cercle */
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+                gap: 30px;
+                padding: 20px;
+            }
+            .left-panel, .right-panel {
+                min-width: unset; /* Enlève la contrainte de min-width */
+                width: 100%; /* Prend toute la largeur disponible */
+            }
+            .header {
+                font-size: 0.9em;
+                padding: 10px 20px;
+            }
+            .about-section h2 {
+                font-size: 1.8em;
+            }
+            .menu-item a {
+                font-size: 1.1em;
+            }
+            .menu-item .placeholder-image {
+                width: 50px;
+                height: 50px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="content">
-    <h1>Roni Ritz Ganem</h1>
-    <p>
-      <a href="https://github.com/Roni-8" target="_blank">GitHub</a>
-      <a href="mailto:roni@email.com">Email</a>
-    </p>
-  </div>
+    <div class="container">
+        <div class="header">
+            Ritz--Ganem Roni | MSc Student | Environmental Science - Ecology - Biogeomorphic systems
+        </div>
+        <div class="main-content">
+            <div class="left-panel">
+                <div class="image-container">
+                    <img src="https://via.placeholder.com/500x300?text=Your+Main+Image+Here" alt="Paysage montagneux">
+                </div>
+                <div class="about-section">
+                    <h2>About :</h2>
+                    <p>
+                        A compléter (Ceci est le texte pour la section "About". Vous pouvez le remplir avec votre description, vos passions, votre vision. Ce texte sera affiché sur la page d'accueil.)
+                    </p>
+                </div>
+            </div>
+            <div class="right-panel">
+                <div class="menu-item">
+                    <a href="scientific-interests.html">Scientific interests :</a>
+                    <div class="placeholder-image">
+                        <img src="https://via.placeholder.com/60?text=Img1" alt="Scientific interests">
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <a href="research-experiences.html">Research experiences :</a>
+                    <div class="placeholder-image">
+                        <img src="https://via.placeholder.com/60?text=Img2" alt="Research experiences">
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <a href="skills.html">Skills :</a>
+                    <div class="placeholder-image">
+                        <img src="https://via.placeholder.com/60?text=Img3" alt="Skills">
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <a href="other-interests.html">Other interests :</a>
+                    <div class="placeholder-image">
+                        <img src="https://via.placeholder.com/60?text=Img4" alt="Other interests">
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <a href="academic-background.html">Academic background :</a>
+                    <div class="placeholder-image">
+                        <img src="https://via.placeholder.com/60?text=Img5" alt="Academic background">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
-
