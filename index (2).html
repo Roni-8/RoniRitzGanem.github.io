@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ritz-Ganem Roni | MSc Student</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Karla:wght@400;500;700&display=swap');
+
+  :root {
+    --ink: #000000;
+    --band: rgba(173, 216, 230, 0.2); /* bleu clair, 20% d'opacité */
+    --band-strong: rgba(173, 216, 230, 0.38);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background-color: #111;
+    font-family: 'Karla', sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    min-height: 100vh;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 1100px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    position: relative;
+    /* la photo d'accueil sert de fond plein cadre à tout le site */
+    background-image: url('photo-accueil.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 620px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header {
+    background-color: var(--band);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    color: var(--ink);
+    padding: 15px 30px;
+    font-size: 1.05em;
+    text-align: center;
+  }
+
+  .card {
+    display: flex;
+    align-items: flex-start;
+    flex: 1;
+  }
+
+  /* ---- Sidebar de navigation ---- */
+  .sidebar {
+    width: 64px;
+    margin-top: 10px;
+    background-color: var(--band);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px 0;
+    gap: 4px;
+    transition: width 0.25s ease;
+    flex-shrink: 0;
+    border-radius: 0 12px 12px 0;
+  }
+
+  .sidebar:hover {
+    width: 220px;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 12px 16px;
+    cursor: pointer;
+    border-left: 3px solid transparent;
+    transition: background 0.15s ease, border-color 0.15s ease;
+    white-space: nowrap;
+  }
+
+  .nav-item:hover {
+    background-color: var(--band-strong);
+    border-left-color: var(--ink);
+  }
+
+  .nav-item.active {
+    background-color: var(--band-strong);
+    border-left-color: var(--ink);
+  }
+
+  .nav-icon {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-icon svg {
+    width: 100%;
+    height: 100%;
+    stroke: var(--ink);
+    fill: none;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .nav-label {
+    font-size: 0.9em;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .sidebar:hover .nav-label {
+    opacity: 1;
+  }
+
+  /* ---- Zone de contenu principal ---- */
+  .main-panel {
+    flex: 1;
+    position: relative;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .bottom-actions {
+    position: absolute;
+    bottom: 20px;
+    z-index: 2;
+  }
+
+  .action-cv {
+    right: 30px;
+  }
+
+  .action-contact {
+    left: 30px;
+  }
+
+  .btn {
+    font-size: 0.85em;
+    padding: 8px 18px;
+    border-radius: 999px;
+    text-decoration: none;
+    color: var(--ink);
+    background-color: var(--band-strong);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    transition: opacity 0.15s ease;
+  }
+
+  .btn:hover { opacity: 0.75; }
+
+  #content-area {
+    margin-top: 10px;
+    transition: opacity 0.2s ease;
+  }
+
+  .text-panel {
+    display: inline-block;
+    background-color: var(--band);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-radius: 12px;
+    padding: 24px 28px;
+    max-width: 560px;
+  }
+
+  .text-panel h2 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 2em;
+    color: var(--ink);
+    margin: 0 0 12px;
+  }
+
+  .text-panel p {
+    font-size: 0.95em;
+    line-height: 1.7;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  @media (max-width: 700px) {
+    .card { flex-direction: column; }
+    .sidebar {
+      width: 100%;
+      flex-direction: row;
+      overflow-x: auto;
+      padding: 12px;
+    }
+    .sidebar:hover { width: 100%; }
+    .nav-label { opacity: 1; }
+    .top-actions { position: static; justify-content: center; margin-bottom: 16px; }
+    #content-area { margin-top: 16px; }
+    .text-panel { max-width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    Ritz-Ganem Roni | MSc Student | Environmental Science - Ecology - Biogeomorphic systems
+  </div>
+
+  <div class="card">
+    <nav class="sidebar" id="sidebar">
+      <div class="nav-item active" data-section="about">
+        <span class="nav-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></span>
+        <span class="nav-label">About</span>
+      </div>
+      <div class="nav-item" data-section="research">
+        <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M9 3h6"/><path d="M10 3v6l-5.5 9.5A1.5 1.5 0 0 0 5.8 21h12.4a1.5 1.5 0 0 0 1.3-2.5L14 9V3"/><path d="M7.5 14.5h9"/></svg></span>
+        <span class="nav-label">Research experiences / Internships</span>
+      </div>
+      <div class="nav-item" data-section="skills">
+        <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L4 17l3 3 5.3-5.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2-2z"/></svg></span>
+        <span class="nav-label">Skills</span>
+      </div>
+      <div class="nav-item" data-section="academic">
+        <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 3 2 8l10 5 10-5-10-5z"/><path d="M6 10.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-5.5"/><path d="M22 8v6"/></svg></span>
+        <span class="nav-label">Academic background</span>
+      </div>
+      <div class="nav-item" data-section="scientific">
+        <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-4 10.5c.7.6 1 1.4 1 2.5h6c0-1.1.3-1.9 1-2.5A6 6 0 0 0 12 3z"/></svg></span>
+        <span class="nav-label">Scientific interests</span>
+      </div>
+      <div class="nav-item" data-section="other">
+        <span class="nav-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15 9l-2 6-6 2 2-6 6-2z"/></svg></span>
+        <span class="nav-label">Other interests</span>
+      </div>
+    </nav>
+
+    <div class="main-panel">
+      <div id="content-area"></div>
+    </div>
+  </div>
+
+  <div class="bottom-actions action-contact">
+    <a href="#" class="btn" id="contact-link">Contact</a>
+  </div>
+  <div class="bottom-actions action-cv">
+    <a href="cv.pdf" class="btn" target="_blank" rel="noopener">CV</a>
+  </div>
+</div>
+
+<script>
+  var sections = {
+    about: {
+      title: 'About',
+      text: 'A compléter — texte de présentation, ton domaine, ta démarche de recherche.'
+    },
+    research: {
+      title: 'Research experiences / Internships',
+      text: 'A compléter — liste des stages : structure d\'accueil, période, sujet, encadrant.'
+    },
+    skills: {
+      title: 'Skills',
+      text: 'A compléter — compétences terrain, labo, logiciels, langues.'
+    },
+    academic: {
+      title: 'Academic background',
+      text: 'A compléter — cursus, diplômes, établissements.'
+    },
+    scientific: {
+      title: 'Scientific interests',
+      text: 'A compléter — axes de recherche, questions qui t\'animent.'
+    },
+    other: {
+      title: 'Other interests',
+      text: 'A compléter — voyages de terrain et centres d\'intérêt.'
+    }
+  };
+
+  var contentArea = document.getElementById('content-area');
+  var navItems = document.querySelectorAll('.nav-item');
+  var contactLink = document.getElementById('contact-link');
+
+  function renderSection(data) {
+    return '<div class="text-panel"><h2>' + data.title + '</h2><p>' + data.text + '</p></div>';
+  }
+
+  function showSection(key) {
+    var data = sections[key];
+    contentArea.style.opacity = 0;
+    setTimeout(function() {
+      contentArea.innerHTML = renderSection(data);
+      contentArea.style.opacity = 1;
+    }, 150);
+
+    navItems.forEach(function(item) {
+      item.classList.toggle('active', item.dataset.section === key);
+    });
+  }
+
+  navItems.forEach(function(item) {
+    item.addEventListener('click', function() {
+      showSection(item.dataset.section);
+    });
+  });
+
+  contactLink.addEventListener('click', function(e) {
+    e.preventDefault();
+    showSection('about');
+    alert('Section Contact à compléter (email / liens).');
+  });
+
+  showSection('about');
+</script>
+
+</body>
+</html>
